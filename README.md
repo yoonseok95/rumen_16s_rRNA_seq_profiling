@@ -10,7 +10,7 @@ qiime tools import \
 --type 'SampleData[PairedEndSequencesWithQuality]' \
 --input---input-path casava-18-paired-end-demultiplexed \
 --input-format CasavaOneEightSingleLanePerSampleDirFmt \
---output-path casava_pe_demux.qza \\
+--output-path casava_pe_demux.qza \
 
 '''
 
