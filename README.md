@@ -1,7 +1,9 @@
 # rumen_16s_rRNA_seq_profiling
 
 
-## Importing Data.  
+## Importing Data
+
+
 '''
 qiime tools import \
 --type 'SampleData[PairedEndSequencesWithQuality]' \
@@ -9,6 +11,7 @@ qiime tools import \
 --input-format CasavaOneEightSingleLanePerSampleDirFmt \
 --output-path casava_pe_demux.qza
 '''
+
 
 결과로 Qiime2 에서 casava_pe_demux.qza 파일을 얻을수 있다.
 
