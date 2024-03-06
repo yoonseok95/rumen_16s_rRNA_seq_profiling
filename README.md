@@ -30,6 +30,8 @@ qiime demux summarize \
 
 여기에서 다음과 같은 유용한 정보를 찾을수 있다.
 
+QIIME2 View 링크:
+
 https://view.qiime2.org/visualization/?type=html&src=6dac8f63-0902-4743-bb6e-2cfed39375c8 
 
 ![스크린샷 2024-03-06 22-30-04](https://github.com/yoonseok95/rumen_16s_rRNA_seq_profiling/assets/145320727/6d6c0643-cd52-4d9d-9f8c-324862d4211c)
@@ -38,7 +40,7 @@ Forward Reads와 Reverse Reads에 대한 Sequence별 Quality Score을 나타낸 
 
 ![스크린샷 2024-03-06 22-33-26](https://github.com/yoonseok95/rumen_16s_rRNA_seq_profiling/assets/145320727/74499927-0300-4e34-a9b1-e16686d7b253)
 
-그래프를 읽는 방법은
+그래프를 읽는 방법:
 
 X축 : Quality Score
 
@@ -47,8 +49,16 @@ Y축 : Sequence Base
 를 의미하는것으로, 각 Sequence Base에서 Sample갯수들의 Quality Score의 분포를 박스플롯으로 그렸고 그 중앙값이 Median값이다.
 
 * 박스플롯 확대/ 축소:
+  
   마우스 왼쪽 클릭 한채로 원하는 Sequence Base에서 드래그 -> 확대
+  
   빈공간에서 더블클릭 -> 축소 (원상복구)
+
+** 위와같은 방법을 사용하여 다음 단계인 DADA2를 이용한 Denoising 단계에서의 노이즈 제거를 위한 매개변수 값을 결정할수 있다. **
+
+* 제가 적용한 규칙은 Quality Score이 30 미만으로 떨어지는 지점까지 자르는 것이였습니다.
+
+
 
 ## Denoising with DADA2.
 
