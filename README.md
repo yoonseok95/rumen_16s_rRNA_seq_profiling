@@ -1,6 +1,6 @@
 # rumen_16s_rRNA_seq_profiling
 
-
+경제동물, 그중에서도 소(Cattle)과 같은 반추동물안에있는 Microbiome에 대한 Microbiota들의 16S rRNA Sequence로 Profiling을 하여 메탄을 생성하는 Microbiome을 찾아내고 싶음.
 ## Importing Data
 
 
