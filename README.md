@@ -5,13 +5,16 @@
 16S rRNA 유전자 서열 분석은 미생물 군집에 대한 광범위하고 심층적인 정보를 제공하고 모든 주요 microbiota에 대해 문에서 속 수준에서 유기체를 구별할수 있게 해 준다.
 특히, 경제동물, 그중에서도 소(Cattle)와 같은 반추동물안에있는 Microbiome에 대한 Microbiota들의 16S rRNA Sequence로 Taxonomy profiling을 하여 반추위내에서 메탄을 발생시키는 Microbiota들을 찾고
 다양성 분석을 통하여 메탄을 발생시키는 미생물들이 반추동물내에 얼마나 다양하게 분포하여있는지를 확인하고자 16S_rRNA 분석을 진행하였다.   
-**여기서는 12개의 샘플에서 QIIME2에서 DADA2를 통해 Paired-end Alignment를 진행하여 높은 정확도로 키메라를 제거하면서 동시에 노이즈또한 같이 잡아 내기위한 검사를 진행하고   
-제거된 데이터 상태에서 cleaned 한 Feature table을 얻는것 까지 진행 하였다.**
 
 ### Pipeline
 이 데이터 세트의 샘플은 아래의 파이프 라인에서 볼수 있듯, 반추위액을 샘플링하여 시퀀싱을 맡겨서 얻은 데이서 셋으로,   
-이미 잘려지고 쌍을 이루는 Foword, Reverse 에 해당하는 방향으로 Demultiplexed 된 Artifact가 있다.
-![image](https://github.com/yoonseok95/rumen_16s_rRNA_seq_profiling/assets/145320727/5c1a7d5c-48fe-4dc8-8cb4-774faf19d017)
+이미 잘려지고 쌍을 이루는 Foword, Reverse 에 해당하는 방향으로 Demultiplexed 된 Artifact가 있다.   
+
+전체 Pipeline :   
+![image](https://github.com/yoonseok95/rumen_16s_rRNA_seq_profiling/assets/145320727/5c1a7d5c-48fe-4dc8-8cb4-774faf19d017)   
+
+샘플링 Pipline :   
+
 
 ## Importing Data   
 * QIIME2 에서는 모든 데이터를 .qza(Qiime 아티팩트) 형식으로 가져옵니다.
@@ -64,7 +67,8 @@ Y축 : Sequence Base
 
 ## Denoising with DADA2.   
 
-**DADA2가 효율적으로 작동 하려면 Read Quality가 낮은 부분을 최대한 잘라내되, Foword(정방향) 과 Reverse(역방향)을 문제없이 병합할수 있도록 충분히 겹치는부분 (Merge 되는 부분)을 남겨 두는 것이 중요합니다.**
+**DADA2가 효율적으로 작동 하려면 Read Quality가 낮은 부분을 최대한 잘라내되, Foword(정방향) 과 Reverse(역방향)을 문제없이 병합할수 있도록 충분히 겹치는부분 (Merge 되는 부분)을 남겨 두는 것이 중요합니다.**   
+**여기서는 12개의 샘플에 대해서 QIIME2에서 DADA2를 통해 Paired-end Alignment를 진행하여 높은 정확도로 키메라를 제거하면서 동시에 노이즈도 같이 잡아 내기위한 검사를 진행하고 제거된 데이터 상태에서 cleaned 한 Feature table을 얻는것 까지 진행 하였다.**
 
 ```
 qiime dada2 denoise-paired \
