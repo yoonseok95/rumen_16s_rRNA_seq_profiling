@@ -14,6 +14,7 @@
 ![image](https://github.com/yoonseok95/rumen_16s_rRNA_seq_profiling/assets/145320727/5c1a7d5c-48fe-4dc8-8cb4-774faf19d017)   
 
 샘플링 Pipline :   
+![image](https://github.com/yoonseok95/rumen_16s_rRNA_seq_profiling/assets/145320727/5f797e57-3cc8-418b-afa4-acc64dab2488)
 
 
 ## Importing Data   
@@ -59,11 +60,9 @@ Y축 : Sequence Base
   마우스 왼쪽 클릭 한채로 원하는 Sequence Base에서 드래그 -> 확대
   빈공간에서 더블클릭 -> 축소 (원상복구)
 
-**위와같은 방법을 사용하여 다음 단계인 DADA2를 이용한 Denoising 단계에서의 노이즈 제거를 위한 매개변수 값을 결정할수 있다.**
-
 * 제가 적용한 규칙은 Quality Score이 30 미만으로 떨어지는 지점까지 자르는 것이였습니다.
 
-
+**위와같은 방법을 사용하여 다음 단계인 DADA2를 이용한 Denoising 단계에서의 노이즈 제거를 위한 매개변수 값을 결정할수 있다.**
 
 ## Denoising with DADA2.   
 
