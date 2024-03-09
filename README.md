@@ -4,7 +4,7 @@
 
 소(Cattle)와 같은 반추동물안에있는 Microbiome에 대한 Microbiota들의 16S rRNA Sequence로 Taxonomy profiling을 하여 반추위내에서 메탄을 발생시키는 Microbiota들을 찾고
 다양성 분석을 통하여 메탄을 발생시키는 미생물들이 반추동물내에 얼마나 다양하게 분포하여있는지를 확인하고자 16S_rRNA 분석을 진행하였다. <br>
-
+* 분석 샘플 개수 : 12개
 ## 1. Sampling
 ## 2. Library Construction and Sequencing
 ## 3. Data Pre-processing
