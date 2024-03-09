@@ -1,9 +1,8 @@
 # rumen_16s_rRNA_seq_profiling
-* 저는 샘플 개수가 전체 12개 였습니다. 그래서 12개의 샘플을 가지고 분석을 진행 하였었습니다.
-### 목적
 
-16S rRNA 유전자 서열 분석은 미생물 군집에 대한 광범위하고 심층적인 정보를 제공하고 모든 주요 microbiota에 대해 문에서 속 수준에서 유기체를 구별할수 있게 해 준다.
-특히, 경제동물, 그중에서도 소(Cattle)와 같은 반추동물안에있는 Microbiome에 대한 Microbiota들의 16S rRNA Sequence로 Taxonomy profiling을 하여 반추위내에서 메탄을 발생시키는 Microbiota들을 찾고
+### Description
+
+소(Cattle)와 같은 반추동물안에있는 Microbiome에 대한 Microbiota들의 16S rRNA Sequence로 Taxonomy profiling을 하여 반추위내에서 메탄을 발생시키는 Microbiota들을 찾고
 다양성 분석을 통하여 메탄을 발생시키는 미생물들이 반추동물내에 얼마나 다양하게 분포하여있는지를 확인하고자 16S_rRNA 분석을 진행하였다.   
 
 ### Pipeline
