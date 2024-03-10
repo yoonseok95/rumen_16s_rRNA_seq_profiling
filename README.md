@@ -8,23 +8,28 @@
 * 분석 Sample 개수 : 12개 Sample <br>
 <br>
 
-* 단어설명
-1. Microbiome, Microbiota 이란?
+* 단어설명 <br>
+
+**1. Microbiome, Microbiota** 이란?
 ![스크린샷 2024-03-10 22-43-47](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/e64fa4f5-23fc-4741-aa66-a8515b8d34d2) <br>
 * **Microbiome**이란 Micro - 미생물 , Biome - 생태계로, "미생물 생태계" 라는 뜻으로 모든 미생물들과 단백질, 지질, 다당류, 핵산 및 microbiota의 대사물질을 포함합니다. <br>
 * **Microbiota**는 Fungi, Bacteria, Archaea, Protists, Algae 들과 같은 각각의 미생물들을 지칭하는 단어로 사용 됩니다.
 <br>
 
-2. 16S rRNA gene : 16S rRNA는 원핵생물의 30S 리보솜 소단위체를 구성하는 성분으로, 리보솜에서 단백질 번역과정에 중요한 역할을 수행하므로, 잘 보존되어 있습니다. 그래서 이 부분의 염기서열 분석으로 계통학적 분류가 가능합니다. <br>
-* 1. conserved region: 16S rRNA sequencing 분석에서 원핵생물인지 판별하기 위해 사용되는 서열입니다. <br>
-* 2. variable region: 미생물마다 다른 부분이 있으므로 미생물의 종(species)을 구분하기 위해 사용됩니다. <br>
-<br>
+**2. 16S rRNA gene** : 16S rRNA는 원핵생물의 30S 리보솜 소단위체를 구성하는 성분으로(rRNA = ribosomal RNA 입니다.) 리보솜에서 단백질 번역과정에 중요한 역할을 하며 단백질 합성에 참여합니다. <br>
 
-**variable region 각각을 V1 ~ V9라고 하는데 그 중 V3 ~ V4 region, 혹은 V4가 16S rRNA sequencing에 통상적으로 사용됩니다.** <br>
+**"즉, Central Dogma에 참여하는 16S rRNA는 어떤 생명체든 생명 유지에 있어 필수 기능을 수행하는 것에 참여하는 것이고, 생명유지를 하는 것들은 모든 생명체가 가지고 있고 거의 변화 없이 잘 보존된 부위 입니다. 그러한 의미에서 16S rRNA 가 Conserved region 이라고 하고, 그래서 이 부분의 염기서열 분석으로 다양성분석 및 계통학적 분류가 가능합니다."** <br>
+ 
+ * 1. conserved region: 16S rRNA sequencing 분석에서 원핵생물인지 판별하기 위해 사용되는 서열입니다. <br>
+ * 2. variable region: 미생물마다 다른 부분이 있으므로 미생물의 종(species)을 구분하기 위한 서열입니다. <br>
+ * 3. **variable region 각각을 "V1 ~ V9"라고 하는데 그 중 "V3 ~ V4" region, 혹은 "V4"가 16S rRNA sequencing에 통상적으로 사용됩니다.** <br>
 
 ![스크린샷 2024-03-10 23-12-11](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/e6e7c77f-1058-483e-8eff-70890b64a7f2) <br>
 
-본 분석에서는 V3 ~ V4 region을 16S rRNA sequencing 분석에 사용하였습니다. 
+본 분석에서는 V3 ~ V4 region을 16S rRNA sequencing 분석에 사용하였습니다. <br>
+
+* 아래 파일의 Introduction 7~9번째 줄 참고. <br>
+https://support.illumina.com/documents/documentation/chemistry_documentation/16s/16s-metagenomic-library-prep-guide-15044223-b.pdf <br>
 
 ### Pipeline
 이 데이터 세트의 샘플은 아래의 파이프 라인에서 볼수 있듯, 반추위액을 샘플링하여 시퀀싱을 맡겨서 얻은 데이서 셋으로,   
@@ -153,8 +158,8 @@ qiime metadata tabulate \
   * filtered reads 수가 너무 적게 남았거나 하면, trimming이나 truncation parameter 수를 조정하여 DADA2를 재 실행 해야합니다.
 
 
-## Feature Table and Feature Data Summaries. <br>
-### Feature Table Summary 파일만들기
+### 3-3. Feature Table and Feature Data Summaries. <br>
+### 3-3-1. Feature Table Summary 파일만들기
 
 ```
 qiime feature-table summarize \
@@ -178,7 +183,7 @@ There was an issue with loading the file sample-metadata.tsv as metadata:
   Find details on QIIME 2 metadata requirements here: https://docs.qiime2.org/2023.5/tutorials/metadata/
 
 
-### Representative Sequences 확인.
+### 3-3-2. Representative Sequences 확인.
 
 ```
 qiime feature-table tabulate-seqs \
