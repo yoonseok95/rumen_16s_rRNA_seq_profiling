@@ -27,6 +27,9 @@
 * **variable region 각각을 "V1 ~ V9"라고 하는데 그 중 "V3 ~ V4" region, 혹은 "V4"가 16S rRNA sequencing에 통상적으로 사용됩니다.** <br>
 ![image](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/6e19da31-544f-4c4a-ba2b-8992ed9f5f5d) <br>
 
+* MiSeq <br>
+![image](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/2598503f-2233-4504-9c0b-c63850a1356b) <br>
+
 아래 두개의 논문 및 제조사 권장사항에서 V3 ~ V4 region이 16S rRNA Sequencing분석에 적합하다는 내용에 따라, 본 분석에서는 V3 ~ V4 region을 16S rRNA sequencing 분석에 사용하였습니다. <br>
 
 * 참고문헌
