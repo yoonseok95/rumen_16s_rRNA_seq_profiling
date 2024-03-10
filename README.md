@@ -16,7 +16,6 @@ microbiome이란 "미생물 생태계" 라는 뜻으로 microbiota와 단백질,
 <br>
 2. 16S rRNA gene : 16S rRNA는 원핵생물의 30S 리보솜 소단위체를 구성하는 성분으로, 리보솜에서 단백질 번역과정에 중요한 역할을 수행하므로, 잘 보존되어 있습니다. 그래서 이 부분의 염기서열 분석으로 계통학적 분류가 가능합니다.<br>
 <br>
-<br>
 16S rRNA sequencing 분석에서 conserved region은 원핵생물인지 판별하기 위해 사용되고, variable region은 미생물마다 다른 부분이 있으므로 미생물의 종(species)을 구분하기 위해 사용됩니다. <br>
 variable region 각각을 V1~V9라고 하는데 그 중 V4가 16S rRNA sequencing에 통상적으로 사용됩니다. <br>
 
