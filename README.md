@@ -20,16 +20,24 @@
 
 **"즉, Central Dogma에 참여하는 16S rRNA는 어떤 생명체든 생명 유지에 있어 필수 기능을 수행하는 것에 참여하는 것이고, 생명유지를 하는 것들은 모든 생명체가 가지고 있고 거의 변화 없이 잘 보존된 부위 입니다. 그러한 의미에서 16S rRNA 가 Conserved region 이라고 하고, 그래서 이 부분의 염기서열 분석으로 다양성분석 및 계통학적 분류가 가능합니다."** <br>
  
- * 1. conserved region: 16S rRNA sequencing 분석에서 원핵생물인지 판별하기 위해 사용되는 서열입니다. <br>
- * 2. variable region: 미생물마다 다른 부분이 있으므로 미생물의 종(species)을 구분하기 위한 서열입니다. <br>
- * 3. **variable region 각각을 "V1 ~ V9"라고 하는데 그 중 "V3 ~ V4" region, 혹은 "V4"가 16S rRNA sequencing에 통상적으로 사용됩니다.** <br>
+ * 1. conserved region(보존영역): 16S rRNA sequencing 분석에서 원핵생물인지 판별하기 위해 사용되는 서열입니다. <br>
+ * 2. variable region(변이영역): 미생물마다 다른 부분이 있으므로 미생물의 종(species)을 구분하기 위한 서열입니다. <br>
+<br>
 
-![스크린샷 2024-03-10 23-12-11](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/e6e7c77f-1058-483e-8eff-70890b64a7f2) <br>
+* **variable region 각각을 "V1 ~ V9"라고 하는데 그 중 "V3 ~ V4" region, 혹은 "V4"가 16S rRNA sequencing에 통상적으로 사용됩니다.** <br>
+![image](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/6e19da31-544f-4c4a-ba2b-8992ed9f5f5d) <br>
 
-본 분석에서는 V3 ~ V4 region을 16S rRNA sequencing 분석에 사용하였습니다. <br>
+아래 두개의 논문 및 제조사 권장사항에서 V3 ~ V4 region이 16S rRNA Sequencing분석에 적합하다는 내용에 따라, 본 분석에서는 V3 ~ V4 region을 16S rRNA sequencing 분석에 사용하였습니다. <br>
 
-* 아래 파일의 Introduction 7~9번째 줄 참고. <br>
+* 참고문헌
+* 1. Introduction 7~9번째 줄 참고. <br>
 https://support.illumina.com/documents/documentation/chemistry_documentation/16s/16s-metagenomic-library-prep-guide-15044223-b.pdf <br>
+* 2. Materials and Methods 8~9번째 줄 참고. <br>
+https://synapse.koreamed.org/upload/synapsedata/pdfdata/1105acm/acm-23-1.pdf <br>
+* 3. 마이크로바이옴의 연구 방법 3번째문단의 3~5번째줄 참고. <br>
+http://www.btnews.or.kr/bbs/board.php?bo_table=bt_news&wr_id=139 <br>
+* 4. 16S rRNA 유전자의 V3-V4 초가변 영역 앰플리콘을 이용한 현장 규모 혐기성 소화조 분석에서 한국의 현장 혐기성 소화조의 매우 다양한 원핵 미생물군과 미생물 조성의 미미한 계절 변동 및 기질 유형에 따른 상당한 차이 발견되었습니다. (김후, 2023). <br>
+
 
 ### Pipeline
 이 데이터 세트의 샘플은 아래의 파이프 라인에서 볼수 있듯, 반추위액을 샘플링하여 시퀀싱을 맡겨서 얻은 데이서 셋으로,   
