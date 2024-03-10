@@ -2,13 +2,22 @@
 
 ### Description
 
-소(Cattle)와 같은 반추동물안에있는 Microbiome에 대한 Microbiota들의 16S rRNA Sequence로 Taxonomy profiling을 하여 반추위내에서 메탄을 발생시키는 Microbiota들을 찾고
-다양성 분석을 통하여 메탄을 발생시키는 미생물들이 반추동물내에 얼마나 다양하게 분포하여있는지를 확인하고자 16S_rRNA 분석을 진행하였다. <br>  
+소(Cattle)와 같은 반추동물안에 있는 Microbiome에 대한 Microbiota들의 16S rRNA Sequence로 Taxonomy profiling을 하여 반추위내에서 메탄을 발생시키는 Microbiota들을 찾고
+다양성 분석 및 계통분석을 통하여 메탄을 발생시키는 미생물들이 반추동물내에 얼마나 다양하게 분포하여있는지를 확인하고자 16S_rRNA 분석을 진행하였다. <br>
+
+* 단어설명 : Microbiome 및, Microbiota
+
+![스크린샷 2024-03-10 22-43-47](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/e64fa4f5-23fc-4741-aa66-a8515b8d34d2) <br>
+<br>
+
 * 분석 Sample 개수 : Multiplexed 된 형태의 12개 Sample
+
+
+* 16S rRNA gene : 16S rRNA는 원핵생물의 30S 리보솜 소단위체를 구성하는 성분으로, 
 
 ### Pipeline
 이 데이터 세트의 샘플은 아래의 파이프 라인에서 볼수 있듯, 반추위액을 샘플링하여 시퀀싱을 맡겨서 얻은 데이서 셋으로,   
-이미 잘려지고 쌍을 이루는 Foword, Reverse 에 해당하는 방향으로 Demultiplexed 된 Artifact가 있다.   
+이미 잘려지고 쌍을 이루는 Forward, Reverse 에 해당하는 방향으로 Demultiplexed 된 Artifact가 있다.   
 
 전체 Pipeline :   
 ![image](https://github.com/yoonseok95/rumen_16s_rRNA_seq_profiling/assets/145320727/5c1a7d5c-48fe-4dc8-8cb4-774faf19d017)   
@@ -64,7 +73,8 @@ https://view.qiime2.org/visualization/?type=html&src=6dac8f63-0902-4743-bb6e-2cf
 
 Forward Reads와 Reverse Reads에 대한 Sequence별 Quality Score을 나타낸 그래프들은 다음과 같다.   
 
-![스크린샷 2024-03-06 22-33-26](https://github.com/yoonseok95/rumen_16s_rRNA_seq_profiling/assets/145320727/74499927-0300-4e34-a9b1-e16686d7b253)   
+![스크린샷 2024-03-10 22-50-28](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/6ca35d76-bf56-4edf-a19a-6676798f357e)
+
 
 그래프를 읽는 방법:
 
