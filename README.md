@@ -3,25 +3,24 @@
 ### Description
 
 소(Cattle)와 같은 반추동물안에있는 Microbiome에 대한 Microbiota들의 16S rRNA Sequence로 Taxonomy profiling을 하여 반추위내에서 메탄을 발생시키는 Microbiota들을 찾고
-다양성 분석을 통하여 메탄을 발생시키는 미생물들이 반추동물내에 얼마나 다양하게 분포하여있는지를 확인하고자 16S_rRNA 분석을 진행하였다. <br>
-* 분석 샘플 개수 : 12개
-## 1. Sampling
-## 2. Library Construction and Sequencing
-## 3. Data Pre-processing
-## 4. Diversity Analysis
-## 5. Taxonomy Profiling
-## Pipeline
+다양성 분석을 통하여 메탄을 발생시키는 미생물들이 반추동물내에 얼마나 다양하게 분포하여있는지를 확인하고자 16S_rRNA 분석을 진행하였다. <br>  
+* 분석 Sample 개수 : Multiplexed 된 형태의 12개 Sample
+
+### Pipeline
 이 데이터 세트의 샘플은 아래의 파이프 라인에서 볼수 있듯, 반추위액을 샘플링하여 시퀀싱을 맡겨서 얻은 데이서 셋으로,   
 이미 잘려지고 쌍을 이루는 Foword, Reverse 에 해당하는 방향으로 Demultiplexed 된 Artifact가 있다.   
 
 전체 Pipeline :   
 ![image](https://github.com/yoonseok95/rumen_16s_rRNA_seq_profiling/assets/145320727/5c1a7d5c-48fe-4dc8-8cb4-774faf19d017)   
-
+## 1. Sampling
 샘플링 Pipline :   
 ![image](https://github.com/yoonseok95/rumen_16s_rRNA_seq_profiling/assets/145320727/5f797e57-3cc8-418b-afa4-acc64dab2488)
 
+## 2. Library Construction and Sequencing <br>
 
-## Importing Data   
+
+## 3. Data Pre-processing
+### 3-1. Importing Data   
 * QIIME2 에서는 모든 데이터를 .qza(Qiime 아티팩트) 형식으로 가져옵니다.
 * Casava 1.8 demultiplexed Format은 아래 5가지 이름이 underscore로 연결된 파일명이며, Illumina Miseq으로 Paired-end 시퀀싱 시 일반적으로 연구자가 받게되는 파일명 형태 입니다.
   * 예) P129174h_S1_L001_R1_001.fastq.gz, P129174h_S1_L001_R2_001.fastq.gz
@@ -69,8 +68,8 @@ Forward Reads와 Reverse Reads에 대한 Sequence별 Quality Score을 나타낸 
 
 그래프를 읽는 방법:
 
-X축 : Quality Score   
-Y축 : Sequence Base
+X축 : Sequence Base <br>
+Y축 : Quality Score
 
 를 의미하는것으로, 각 Sequence Base에서 Sample갯수들의 Quality Score의 분포를 박스플롯으로 그렸고 그 중앙값이 Median값이다.
 
@@ -83,7 +82,7 @@ Y축 : Sequence Base
 
 **위와같은 방법을 사용하여 다음 단계인 DADA2를 이용한 Denoising 단계에서의 노이즈 제거를 위한 매개변수 값을 결정할수 있다.**
 
-## Denoising with DADA2.   
+### 3-2.Denoising with DADA2.   
 
 * DADA2가 효율적으로 작동 하려면 Read Quality가 낮은 부분을 최대한 잘라내되, Foward(정방향) 과 Reverse(역방향)을 문제없이 병합할수 있도록 충분히 겹치는부분 (Merge 되는 부분)을 남겨 두는 것이 중요합니다.  
 * 여기서는 12개의 샘플에 대해서 QIIME2에서 DADA2를 통해 Paired-end Alignment를 진행하여 높은 정확도로 키메라를 제거하면서 동시에 노이즈도 같이 잡아 내기위한 검사를 진행합니다.
@@ -97,7 +96,7 @@ Y축 : Sequence Base
   * read trimming을 전혀 하지 않아도 50bp오버랩. 최소 30bp 오버랩구간을 남기려면 현재 trimming 하는 Base Pair는 없고, truncation 하는 Base pair 들은 Forward 10 bp, Reverse 69bp 에 대하여 Truncation이 가능 합니다.
 * 저는 제거된 데이터 상태에서 cleaned 한 Feature table을 얻는것 까지 진행 하였습니다. <br>
 
-## DADA2 실행
+### 3-2-1. DADA2 실행
 
 ```
 qiime dada2 denoise-paired \
@@ -117,7 +116,7 @@ qiime dada2 denoise-paired \
 * 각 명령에 대한 자세한 설명은 https://docs.qiime2.org/2021.2/plugins/available/dada2/denoise-paired/?highlight=denoise%20paired 에서 확인할수 있습니다.
 
 
-## QC Summary파일 Visualization.
+### 3-2-2. QC Summary파일 Visualization.
 
 ```
 qiime metadata tabulate \
@@ -178,6 +177,8 @@ qiime feature-table tabulate-seqs \
 
 * rep-seqs.qzv 파일 Qiime2 View로 열기 : 
 https://view.qiime2.org/visualization/?src=028fe789-c56d-4d14-98ce-0f304df29ab3&type=html
-![스크린샷 2024-03-07 17-50-38](https://github.com/yoonseok95/rumen_16s_rRNA_seq_profiling/assets/145320727/baf8371a-eedb-4361-9a8f-c4245d8b9257)
+![스크린샷 2024-03-07 17-50-38](https://github.com/yoonseok95/rumen_16s_rRNA_seq_profiling/assets/145320727/baf8371a-eedb-4361-9a8f-c4245d8b9257) <br>
+## 4. Diversity Analysis <br>
 
+## 5. Taxonomy Profiling
 
