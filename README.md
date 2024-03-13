@@ -1,6 +1,6 @@
 # rumen_16s_rRNA_seq_profiling
 
-### Description
+## Description
 
 소(Cattle)와 같은 반추동물안에 있는 Microbiome에 대한 Microbiota들의 16S rRNA Sequence로 Taxonomy profiling을 하여 반추위내에서 메탄을 발생시키는 Microbiota들을 찾고
 다양성 분석 및 계통분석을 통하여 메탄을 발생시키는 미생물들이 반추동물내에 얼마나 다양하게 분포하여있는지를 확인하고, 메탄 저감 물질을 처리하였을때 처리군과 대조군들과의 비교시 얼마나 효과가 있는지를 확인하기위하여 16S_rRNA 분석을 진행하였습니다. <br>
@@ -46,9 +46,7 @@ http://www.btnews.or.kr/bbs/board.php?bo_table=bt_news&wr_id=139 <br>
   * 용도별로 말하자면 Hiseq는 whole genome sequencing이나 functional metagenomics용으로 사용하고 miseq는 미생물 생태분석용으로 사용합니다.
 <br>
 
-### Pipeline
-
-전체 Pipeline :   
+## 16S rRNA Sequencing Analysis Pipeline   
 ![image](https://github.com/yoonseok95/rumen_16s_rRNA_seq_profiling/assets/145320727/5c1a7d5c-48fe-4dc8-8cb4-774faf19d017)   
 
 ## 1. Sampling
