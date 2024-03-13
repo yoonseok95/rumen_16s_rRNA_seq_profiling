@@ -18,18 +18,13 @@
 
 **2. 16S rRNA gene** : 16S rRNA는 원핵생물의 30S 리보솜 소단위체를 구성하는 성분으로(rRNA = ribosomal RNA 입니다.) 리보솜에서 단백질 번역과정에 중요한 역할을 하며 단백질 합성에 참여합니다. <br>
 
-**"즉, Central Dogma에 참여하는 16S rRNA는 어떤 생명체든 생명 유지에 있어 필수 기능을 수행하는 것에 참여하는 것이고, 생명유지를 하는 것들은 모든 생명체가 가지고 있고 거의 변화 없이 잘 보존된 부위 입니다. 그러한 의미에서 16S rRNA 가 Conserved region 이라고 하고, 그래서 이 부분의 염기서열 분석으로 다양성분석 및 계통학적 분류가 가능합니다."** <br>
- 
+**"즉, 원핵세포의 Central Dogma에 참여하는 16S rRNA는 원핵생물에 있어 생명 유지를 위한 필수 기능을 수행하는 것에 참여하는 것이고, 생명유지를 하기위해 사용되는 것들은 거의 변화 없이 잘 보존된 부위 입니다. 그러한 의미에서 16S rRNA gene에 있는 유전 서열 영역중 Conserved region 은 보존적인 영역이 있다는 의미이고, 그래서 이 부분의 염기서열 분석으로 다양성분석 및 계통학적 분류가 가능합니다."** <br>
+![image](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/c1755eb3-be94-4e74-ad48-012e6725a5ba)
+<br> 
  * 1. conserved region(보존영역): 16S rRNA sequencing 분석에서 원핵생물인지 판별하기 위해 사용되는 서열입니다. <br>
  * 2. variable region(변이영역): 미생물마다 다른 부분이 있으므로 미생물의 종(species)을 구분하기 위한 서열입니다. <br>
-<br>
-
-* **variable region 각각을 "V1 ~ V9"라고 하는데 그 중 "V3 ~ V4" region, 혹은 "V4"가 16S rRNA sequencing에 통상적으로 사용됩니다.** <br>
+* **variable region 각각을 "V1 ~ V9"라고 하는데 그 중 "V3 ~ V4" region, 혹은 "V4"가 16S rRNA sequencing에 통상적으로 사용됩니다.** 
 ![image](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/6e19da31-544f-4c4a-ba2b-8992ed9f5f5d) <br>
-
-* MiSeq <br>
-![image](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/2598503f-2233-4504-9c0b-c63850a1356b) <br>
-
 아래 두개의 논문 및 제조사 권장사항에서 V3 ~ V4 region이 16S rRNA Sequencing분석에 적합하다는 내용에 따라, 본 분석에서는 V3 ~ V4 region을 16S rRNA sequencing 분석에 사용하였습니다. <br>
 
 * 참고문헌
@@ -39,23 +34,34 @@ https://support.illumina.com/documents/documentation/chemistry_documentation/16s
 https://synapse.koreamed.org/upload/synapsedata/pdfdata/1105acm/acm-23-1.pdf <br>
 * 3. 마이크로바이옴의 연구 방법 3번째문단의 3~5번째줄 참고. <br>
 http://www.btnews.or.kr/bbs/board.php?bo_table=bt_news&wr_id=139 <br>
-* 4. 16S rRNA 유전자의 V3-V4 초가변 영역 앰플리콘을 이용한 현장 규모 혐기성 소화조 분석에서 한국의 현장 혐기성 소화조의 매우 다양한 원핵 미생물군과 미생물 조성의 미미한 계절 변동 및 기질 유형에 따른 상당한 차이 발견되었습니다. (김후, 2023). <br>
+* 4. 16S rRNA 유전자의 V3-V4 초가변 영역 앰플리콘을 이용한 현장 규모 혐기성 소화조 분석에서 한국의 현장 혐기성 소화조의 매우 다양한 원핵 미생물군과 미생물 조성의 미미한 계절 변동 및 기질 유형에 따른 상당한 차이 발견되었습니다.
+     김후. (2023). Prokaryotic metataxonomics for analysis of field-scale anaerobic digesters and fecal microbiome (Doctoral dissertation, 한양대학교). <br>
+* Illumina Sequencing Machine <br>
+![스크린샷 2024-03-13 20-24-26](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/61bf425b-bc3a-49de-b453-d372845b5f50) <br>
+ <br>
 
+  * MiSeq은 짧은 DNA(150bp)에서 많은 DNA을 시퀀싱할 수 있고 HiSeq은 분석 가능한 길이가 비교적 긴편이나 (150~300bp) 그렇게 많은 DNA를 시퀀싱할 수는 없다는 차이가 있습니다.
+  * 이러한 이유로 가격적인 부분에서 차이가 생기는데 MiSeq이 HiSeq에 비해 저렴합니다.
+![스크린샷 2024-03-13 20-29-39](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/ef71a7c8-9279-4371-a219-f66254b19f9b) <br>
+  * 용도별로 말하자면 Hiseq는 whole genome sequencing이나 functional metagenomics용으로 사용하고 miseq는 미생물 생태분석용으로 사용합니다.
+<br>
 
 ### Pipeline
-이 데이터 세트의 샘플은 아래의 파이프 라인에서 볼수 있듯, 반추위액을 샘플링하여 시퀀싱을 맡겨서 얻은 데이서 셋으로,   
-이미 잘려지고 쌍을 이루는 Forward, Reverse 에 해당하는 방향으로 Demultiplexed 된 Artifact가 있다.   
 
 전체 Pipeline :   
 ![image](https://github.com/yoonseok95/rumen_16s_rRNA_seq_profiling/assets/145320727/5c1a7d5c-48fe-4dc8-8cb4-774faf19d017)   
+
 ## 1. Sampling
-샘플링 Pipline :   
-![image](https://github.com/yoonseok95/rumen_16s_rRNA_seq_profiling/assets/145320727/5f797e57-3cc8-418b-afa4-acc64dab2488)
+샘플링 Pipline : <br>
+![image](https://github.com/yoonseok95/rumen_16s_rRNA_seq_profiling/assets/145320727/5f797e57-3cc8-418b-afa4-acc64dab2488) <br>
 
 ## 2. Library Construction and Sequencing <br>
 
 
-## 3. Data Pre-processing
+## 3. Data Pre-processing <br>
+Data Pre-processing Pipe line : <br>
+![스크린샷 2024-03-13 21-30-24](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/9b261263-503b-461c-9816-6a33b2662ffb) <br>
+
 ### 3-1. Importing Data   
 * QIIME2 에서는 모든 데이터를 .qza(Qiime 아티팩트) 형식으로 가져옵니다.
 * Casava 1.8 demultiplexed Format은 아래 5가지 이름이 underscore로 연결된 파일명이며, Illumina Miseq으로 Paired-end 시퀀싱 시 일반적으로 연구자가 받게되는 파일명 형태 입니다.
@@ -216,6 +222,17 @@ qiime feature-table tabulate-seqs \
 https://view.qiime2.org/visualization/?src=028fe789-c56d-4d14-98ce-0f304df29ab3&type=html
 ![스크린샷 2024-03-07 17-50-38](https://github.com/yoonseok95/rumen_16s_rRNA_seq_profiling/assets/145320727/baf8371a-eedb-4361-9a8f-c4245d8b9257) <br>
 ## 4. Diversity Analysis <br>
+Diversity Analysis Pipeline : <br>
+![스크린샷 2024-03-13 21-33-02](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/b41ac96f-6c87-41c5-a857-bfea54d116e8)
 
-## 5. Taxonomy Profiling
+## 5. Taxonomy Profiling <br>
+Taxonomy Profiling Pipeline : <br>
+![스크린샷 2024-03-13 21-37-06](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/ea6c2704-7ab8-4558-ba16-5f9860f532e6) <br>
+<br>
+## 6. 결과도출 <br>
+Conclusion Pipeline : <br>
+![4 - Untitled slide](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/6ed6d2a0-7c8a-4743-a141-a0fc62ef6366)
+
+
+
 
