@@ -63,7 +63,9 @@ Data Pre-processing Pipe line : <br>
 <br>
 ![스크린샷 2024-03-13 21-30-24](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/9b261263-503b-461c-9816-6a33b2662ffb) <br>
 * Data Pre-processing 과정에서의 분석 Tool : **Qiime2-2023.5** <br>
-* Qiime2 분석 tool 전체 Pipeline <br>
+<br>
+
+* Qiime2 분석 tool 내전체 Pipeline <br>
 ![image](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/01f36875-6ec6-447a-b2df-dc7ea0ae28cc) <br>
 * QIIME2 에서는 모든 데이터를 .qza 형식(Qiime 아티팩트)으로 가져옵니다.
 * Illumina Miseq으로 Paired-end 시퀀싱 시 일반적으로 연구자가 받게되는 파일명 형태는 demultiplexed paired-end 데이터셋 <br>
@@ -89,19 +91,21 @@ qiime tools import \
 --output-path casava_pe_demux.qza 
 ```
 * output 파일 : **01) casava_pe_demux.qza** 생성 확인
-* 데이터를 casava_pe_demux.qza 파일로 가져오면 이것을 Qiime2의 시각화 파일로 변환할수 있습니다.
+* 데이터를 casava_pe_demux.qza 파일로 가져오면 이것을 Qiime2 view에 Drag and Drop으로 Qiime2의 시각화 파일로 변환할수 있습니다.
 
-### 3-1-1. Visualizing Imported Data
+### 3-1-1. Visualizing with Imported Data
 
 ```
-qiime demux summarize \ # plugin code : demultiplexed 된 
---i-data casava_pe_demux.qza \
---o-visualization casava_pe_demux.qzv
+qiime demux summarize \ # plugin code : CasavaOneEightSingleLanePerSampleDirFmt 형식으로 demultiplexed된 output 파일을 요약
+--i-data casava_pe_demux.qza \ # Data Importing단계에서 나온 output파일을 다시 Qiime2로 Import
+--o-visualization casava_pe_demux.qzv # 결과로 Import 된 .qza 파일이 .qzv 로 바뀌면서 시각화 가능
 ```
 * output 파일 : **02) casava_pe_demux.qzv** 생성 확인 (모든 .qzv 형태의 파일 포멧은 QIIME2 Viewer에서 열수 있습니다.) <br>
-* 위 .qzv 파일을 QIIME2 View에서 열기.
+* 위 .qzv 파일을 QIIME2 View에 Drag and Drop으로 시각화
   * Overview : 샘플 데이터의 총 시퀀스(리드) 통계 및 샘플 별 시퀀스 수
-  * Interactive Quality Plot : Forward와 Reverse Reads의 Quality scores를 Plot에서 확인하고, QC 단계의 조건들을 고민할수 있습니다.
+  * Interactive Quality Plot : Forward와 Reverse Read 들의 Quality scores를 Plot에서 확인하고, QC 단계의 조건들을 고민할수 있습니다.
+  * Illumina 사에서 MiSeq을 통해 Sequencing이 진행되는데, Sequencing이 진행되는 과정에서 발생되는 Error값, 혹은 Sample Read들이 너무 조금 읽힌경우 들에 한하여 그 값들을 잘라내어 분석 오차를 줄일수 있습니다.
+
 
 QIIME2 View 링크:   
 
@@ -110,7 +114,7 @@ https://view.qiime2.org/visualization/?type=html&src=6dac8f63-0902-4743-bb6e-2cf
 
 ![스크린샷 2024-03-06 22-30-04](https://github.com/yoonseok95/rumen_16s_rRNA_seq_profiling/assets/145320727/6d6c0643-cd52-4d9d-9f8c-324862d4211c)   
 
-Forward Reads와 Reverse Reads에 대한 Sequence별 Quality Score을 나타낸 그래프들은 다음과 같다.   
+Forward Reads와 Reverse Reads에 대한 Sequence별 Quality Score을 나타낸 그래프들은 다음과 같습니다.   
 
 ![스크린샷 2024-03-10 22-50-28](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/6ca35d76-bf56-4edf-a19a-6676798f357e)
 
@@ -127,7 +131,7 @@ Y축 : Quality Score
   마우스 왼쪽 클릭 한채로 원하는 Sequence Base에서 드래그 -> 확대
   빈공간에서 더블클릭 -> 축소 (원상복구)
 
-* 제가 적용한 규칙은 Quality Score이 30 미만으로 떨어지는 지점까지 자르는 것이였습니다.
+* 제가 trimming 및 truncation을 진행하기위해 기준으로 삼은것은 각 Boxplot 에서의 Me
 
 **위와같은 방법을 사용하여 다음 단계인 DADA2를 이용한 Denoising 단계에서의 노이즈 제거를 위한 매개변수 값을 결정할수 있다.**
 
