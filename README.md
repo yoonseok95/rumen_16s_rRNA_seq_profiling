@@ -63,10 +63,11 @@ Data Pre-processing Pipe line : <br>
 <br>
 ![스크린샷 2024-03-13 21-30-24](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/9b261263-503b-461c-9816-6a33b2662ffb) <br>
 * Data Pre-processing 과정에서의 분석 Tool : **Qiime2-2023.5** <br>
-* Qiime2 전체 Pipeline <br>
+* Qiime2 분석 tool 전체 Pipeline <br>
 ![image](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/01f36875-6ec6-447a-b2df-dc7ea0ae28cc) <br>
-* QIIME2 에서는 모든 데이터를 .qza(Qiime 아티팩트) 형식으로 가져옵니다.
-* Illumina Miseq으로 Paired-end 시퀀싱 시 일반적으로 연구자가 받게되는 파일명 형태는 demultiplexed paired-end 데이터셋(Casava 1.8 demultiplexed paired-end sequences)으로 Data Importing후 바로 Denoising 단계로 진행했습니다.
+* QIIME2 에서는 모든 데이터를 .qza 형식(Qiime 아티팩트)으로 가져옵니다.
+* Illumina Miseq으로 Paired-end 시퀀싱 시 일반적으로 연구자가 받게되는 파일명 형태는 demultiplexed paired-end 데이터셋 <br>
+  (Casava 1.8 demultiplexed paired-end sequences)으로 Data Importing후 바로 Denoising 단계로 진행했습니다. <br>
 * 데이터셋 형태가 Casava 형태인 이유는 Qiime2 tool에서 가장 잘 호환이 되는 형태의 데이터셋 이기때문입니다.
 * Casava 1.8 demultiplexed Format은 아래 5가지 이름이 underscore로 연결된 파일명입니다.
   * 예) P129174h_S1_L001_R1_001.fastq.gz, P129174h_S1_L001_R2_001.fastq.gz
@@ -77,22 +78,23 @@ Data Pre-processing Pipe line : <br>
     iv.direction of the read (i.e. R1 or R2) <br>
     v.set number <br>
 
-* 실험 의뢰기관으로부터 받은 fastq 파일 이름이, 위와 같은 5개의 구분형태가 아니라면, 되도록 위와 같은 형태로 요구하여 받는게 Qiime2 내에서 데이터 
+* 실험 의뢰기관으로부터 받은 fastq 파일 이름이, 위와 같은 5개의 구분형태가 아니라면, 되도록 위와 같은 형태로 요구하여 받는게 Qiime2 를 활용하여 데이터 분석에 있어 효율적입니다. <br>
 ### 3-1. Importing Data   
     
 ```
 qiime tools import \
---type 'SampleData[PairedEndSequencesWithQuality]' \
---input---input-path casava-18-paired-end-demultiplexed \
---input-format CasavaOneEightSingleLanePerSampleDirFmt \
+--type 'SampleData[PairedEndSequencesWithQuality]' \ # [PairedEndSequencesWithQuality]는 Sample Data의 type을 설명
+--input-path casava-18-paired-end-demultiplexed \ # 데이터를 Qiime에 Import 하는 경로 지정하는 코드
+--input-format CasavaOneEightSingleLanePerSampleDirFmt \ # CasavaOneEightSingleLanePerSampleDirFmt 은 정해져있는 단어로 '내가 이러한 인풋 형식으로 데이터를 집어넣을거야' 라는 의미의 코드
 --output-path casava_pe_demux.qza 
 ```
 * output 파일 : **01) casava_pe_demux.qza** 생성 확인
 * 데이터를 casava_pe_demux.qza 파일로 가져오면 이것을 Qiime2의 시각화 파일로 변환할수 있습니다.
-**CasavaOneEightSingleLanePerSampleDirFmt** 은 정해져있는 단어로 '내가 이러한 인풋 형식으로 데이터를 집어넣을거야' 라는 의미의 코드입니다.
+
+### 3-1-1. Visualizing Imported Data
 
 ```
-qiime demux summarize \
+qiime demux summarize \ # plugin code : demultiplexed 된 
 --i-data casava_pe_demux.qza \
 --o-visualization casava_pe_demux.qzv
 ```
