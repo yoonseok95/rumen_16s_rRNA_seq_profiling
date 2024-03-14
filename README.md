@@ -16,10 +16,11 @@
 * **Microbiota**는 Fungi, Bacteria, Archaea, Protists, Algae 들과 같은 각각의 미생물들을 지칭하는 단어로 사용 됩니다.
 <br>
 
-**2. 16S rRNA gene** : 16S rRNA는 원핵생물의 30S 리보솜 소단위체를 구성하는 성분으로(rRNA = ribosomal RNA 입니다.) 리보솜에서 단백질 번역과정에 중요한 역할을 하며 단백질 합성에 참여합니다. <br>
+**2. 16S rRNA gene** : <br>
+16S rRNA는 원핵생물의 30S 리보솜 소단위체를 구성하는 성분으로(rRNA = ribosomal RNA 입니다.) 리보솜에서 단백질 번역과정에 중요한 역할을 하며 단백질 합성에 참여합니다. <br>
 
 **"즉, 원핵세포의 Central Dogma에 참여하는 16S rRNA는 원핵생물에 있어 생명 유지를 위한 필수 기능을 수행하는 것에 참여하는 것이고, 생명유지를 하기위해 사용되는 것들은 거의 변화 없이 잘 보존된 부위 입니다. 그러한 의미에서 16S rRNA gene에 있는 유전 서열 영역중 Conserved region 은 보존적인 영역이 있다는 의미이고, 그래서 이 부분의 염기서열 분석으로 다양성분석 및 계통학적 분류가 가능합니다."** <br>
-![image](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/c1755eb3-be94-4e74-ad48-012e6725a5ba)
+![스크린샷 2024-03-14 11-10-29](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/bb7df671-44c6-4e62-9c3c-6c229c260243)
 <br> 
  * 1. conserved region(보존영역): 16S rRNA sequencing 분석에서 원핵생물인지 판별하기 위해 사용되는 서열입니다. <br>
  * 2. variable region(변이영역): 미생물마다 다른 부분이 있으므로 미생물의 종(species)을 구분하기 위한 서열입니다. <br>
@@ -27,7 +28,7 @@
 ![image](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/6e19da31-544f-4c4a-ba2b-8992ed9f5f5d) <br>
 아래 두개의 논문 및 제조사 권장사항에서 V3 ~ V4 region이 16S rRNA Sequencing분석에 적합하다는 내용에 따라, 본 분석에서는 V3 ~ V4 region을 16S rRNA sequencing 분석에 사용하였습니다. <br>
 
-* 참고문헌
+* 참고문헌 (분석할 유전자의 영역 선택에 있어 밴치마킹한 참고논문)
 * 1. Introduction 7~9번째 줄 참고. <br>
 https://support.illumina.com/documents/documentation/chemistry_documentation/16s/16s-metagenomic-library-prep-guide-15044223-b.pdf <br>
 * 2. Materials and Methods 8~9번째 줄 참고. <br>
@@ -44,6 +45,7 @@ http://www.btnews.or.kr/bbs/board.php?bo_table=bt_news&wr_id=139 <br>
   * 이러한 이유로 가격적인 부분에서 차이가 생기는데 MiSeq이 HiSeq에 비해 저렴합니다.
 ![스크린샷 2024-03-13 20-29-39](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/ef71a7c8-9279-4371-a219-f66254b19f9b) <br>
   * 용도별로 말하자면 Hiseq는 whole genome sequencing이나 functional metagenomics용으로 사용하고 miseq는 미생물 생태분석용으로 사용합니다.
+  * 그래서 Sample에 대한 Sequencing Data를 얻을때 Illumina사의 Miseq을 통해서 Data를 받았습니다.
 <br>
 
 ## 16S rRNA Sequencing Analysis Pipeline   
@@ -58,11 +60,15 @@ http://www.btnews.or.kr/bbs/board.php?bo_table=bt_news&wr_id=139 <br>
 
 ## 3. Data Pre-processing <br>
 Data Pre-processing Pipe line : <br>
+<br>
 ![스크린샷 2024-03-13 21-30-24](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/9b261263-503b-461c-9816-6a33b2662ffb) <br>
-
-### 3-1. Importing Data   
+* Data Pre-processing 과정에서의 분석 Tool : **Qiime2-2023.5** <br>
+* Qiime2 전체 Pipeline <br>
+![image](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/01f36875-6ec6-447a-b2df-dc7ea0ae28cc) <br>
 * QIIME2 에서는 모든 데이터를 .qza(Qiime 아티팩트) 형식으로 가져옵니다.
-* Casava 1.8 demultiplexed Format은 아래 5가지 이름이 underscore로 연결된 파일명이며, Illumina Miseq으로 Paired-end 시퀀싱 시 일반적으로 연구자가 받게되는 파일명 형태 입니다.
+* Illumina Miseq으로 Paired-end 시퀀싱 시 일반적으로 연구자가 받게되는 파일명 형태는 demultiplexed paired-end 데이터셋(Casava 1.8 demultiplexed paired-end sequences)으로 Data Importing후 바로 Denoising 단계로 진행했습니다.
+* 데이터셋 형태가 Casava 형태인 이유는 Qiime2 tool에서 가장 잘 호환이 되는 형태의 데이터셋 이기때문입니다.
+* Casava 1.8 demultiplexed Format은 아래 5가지 이름이 underscore로 연결된 파일명입니다.
   * 예) P129174h_S1_L001_R1_001.fastq.gz, P129174h_S1_L001_R2_001.fastq.gz
 
     i.sample identifier <br>
@@ -71,8 +77,8 @@ Data Pre-processing Pipe line : <br>
     iv.direction of the read (i.e. R1 or R2) <br>
     v.set number <br>
 
-* 실험 의뢰기관으로부터 받은 fastq 파일 이름이, 위와 같은 5개의 구분형태가 아니라면, 되도록 위와 같은 형태로 요구하여 받는게 튜토리얼을 따라가며 작업을 하는데에 도움이 됩니다.
-    
+* 실험 의뢰기관으로부터 받은 fastq 파일 이름이, 위와 같은 5개의 구분형태가 아니라면, 되도록 위와 같은 형태로 요구하여 받는게 Qiime2 내에서 데이터 
+### 3-1. Importing Data   
     
 ```
 qiime tools import \
