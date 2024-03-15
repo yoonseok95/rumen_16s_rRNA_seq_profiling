@@ -215,7 +215,7 @@ There was an issue with loading the file sample-metadata.tsv as metadata:
 
 **그래서 방향잡고 진행**
 <br>
-* Metadata 스크립트 내용 변경 -> 실험실에서 분석할 Sample로 기존 Sample 변경
+* Metadata 스크립트 내용 변경 -> 실험실에서 분석할 Sample로 기존 Sample ID를 변경
 ![image](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/675a82a7-f786-4d23-a3e8-22ca8fcc6dcd)
 
 <br>
