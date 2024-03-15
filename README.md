@@ -200,6 +200,8 @@ qiime feature-table summarize \
 - table-dada2.qzv 파일이 있어야지만 그래프와 같은 통계적 자료를 보면서 필터링의 기준을 정할수 있다.
 
 **하지만**,,, 아래와 같은 오류가 나왔다.
+<br>
+* 메타데이터가 없다는 내용의 오류코드
 ```
 There was an issue with loading the file sample-metadata.tsv as metadata:
 
@@ -209,7 +211,8 @@ There was an issue with loading the file sample-metadata.tsv as metadata:
 
   Find details on QIIME 2 metadata requirements here: https://docs.qiime2.org/2023.5/tutorials/metadata/
 ```
-
+* 해결책으로 교수님께서 전에 KOGO 학회에서 받은 Metadata에 실험할 Sample 정보만 바꿔서 확장자명 맞춘뒤 분석 진행 해보라고 조언주심..
+  
 
 ### 3-3-2. Representative Sequences 확인.
 
