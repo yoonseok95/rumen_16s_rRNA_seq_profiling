@@ -215,12 +215,28 @@ There was an issue with loading the file sample-metadata.tsv as metadata:
 
 **그래서 방향잡고 진행**
 <br>
-
+* Metadata 스크립트 내용 변경 -> 실험실에서 분석할 Sample로 기존 Sample 변경
 ![image](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/675a82a7-f786-4d23-a3e8-22ca8fcc6dcd)
 
 <br>
+
 **그랬더니,,**
 <br>
+
+- overview
+![image](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/a8d26d93-ffc6-451c-a8d8-2309f29d5b5d) <br>
+- Interactive Sample Detail
+![image](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/c3798e91-853c-43eb-bc8b-94ad6122892f) <br>
+- Feature Detail
+![image](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/4db2a7b9-e03a-47c5-9240-84493bafcf00) <br>
+<br>
+
+* https://view.qiime2.org/visualization/?type=html&src=b2c64c21-082e-4b38-b1d4-86a83cb8adf6 - 위 분석 결과 파일 Drag and Drop 파일 링크 <br>
+
+**문제점**
+분석을 진행한 Metadata 파일이 온전히 분석하려는 대상의 정보가 아니기때문에 Feature Table에대한 정보가 정확하지않다.
+
+**그래서** Metadata를 우리가 분석하는 Rumen animal에 대한 내용으로 채우기 위해 기존에 선행 연구된 논문 을 검색해서 찾아보기로 하였다.
 
 ### 3-3-2. Representative Sequences 확인.
 
