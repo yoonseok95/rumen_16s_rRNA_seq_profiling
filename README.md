@@ -212,7 +212,12 @@ There was an issue with loading the file sample-metadata.tsv as metadata:
   Find details on QIIME 2 metadata requirements here: https://docs.qiime2.org/2023.5/tutorials/metadata/
 ```
 * 해결책으로 교수님께서 전에 KOGO 학회에서 받은 Metadata에 실험할 Sample 정보만 바꿔서 확장자명 맞춘뒤 분석 진행 해보라고 조언주심..
-  
+
+**그래서 방향잡고 진행**
+<br>
+<br>
+**그랬더니,,**
+<br>
 
 ### 3-3-2. Representative Sequences 확인.
 
