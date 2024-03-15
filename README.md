@@ -215,6 +215,9 @@ There was an issue with loading the file sample-metadata.tsv as metadata:
 
 **그래서 방향잡고 진행**
 <br>
+
+![image](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/675a82a7-f786-4d23-a3e8-22ca8fcc6dcd)
+
 <br>
 **그랬더니,,**
 <br>
