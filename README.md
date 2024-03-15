@@ -200,7 +200,7 @@ qiime feature-table summarize \
 - table-dada2.qzv 파일이 있어야지만 그래프와 같은 통계적 자료를 보면서 필터링의 기준을 정할수 있다.
 
 **하지만**,,, 아래와 같은 오류가 나왔다.
-
+```
 There was an issue with loading the file sample-metadata.tsv as metadata:
 
   Metadata file path doesn't exist, or the path points to something other than a file. Please check that the path exists, has read permissions, and points to a regular file (not a directory): sample-metadata.tsv
@@ -208,6 +208,7 @@ There was an issue with loading the file sample-metadata.tsv as metadata:
   There may be more errors present in the metadata file. To get a full report, sample/feature metadata files can be validated with Keemei: https://keemei.qiime2.org
 
   Find details on QIIME 2 metadata requirements here: https://docs.qiime2.org/2023.5/tutorials/metadata/
+```
 
 
 ### 3-3-2. Representative Sequences 확인.
