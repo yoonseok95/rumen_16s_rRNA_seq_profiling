@@ -131,7 +131,7 @@ Y축 : Quality Score
   마우스 왼쪽 클릭 한채로 원하는 Sequence Base에서 드래그 -> 확대
   빈공간에서 더블클릭 -> 축소 (원상복구)
 
-* 제가 trimming 및 truncation을 진행하기위해 기준으로 삼은것은 각 Boxplot 에서의 Me
+* trimming 및 truncation을 진행하기위해 기준으로 삼은것은 각 Boxplot 에서의 Median 값이 30이 안되는 Sequence Base들을 잘라내었다. 
 
 **위와같은 방법을 사용하여 다음 단계인 DADA2를 이용한 Denoising 단계에서의 노이즈 제거를 위한 매개변수 값을 결정할수 있다.**
 
@@ -212,14 +212,15 @@ There was an issue with loading the file sample-metadata.tsv as metadata:
   Find details on QIIME 2 metadata requirements here: https://docs.qiime2.org/2023.5/tutorials/metadata/
 ```
 * **Metadata** : 데이터를 설명해주는 데이터를 의미한다. <br>
-  예를 들자면, 나는 반추동물에 있는 반추위액을 통하여 16S rRNA Seq 분석을 돌리기때문에 분석을 돌릴 Sample을 Sequencing을 돌리고 나오는 데이터를 설명해 줄수있는 데이터를 의미한다. <br>
+  예를 들자면, 나는 반추동물에 있는 반추위액을 통하여 16S rRNA Seq 분석을 돌리기때문에 분석을 돌릴 Sample data를 설명해주는 데이터 이다. <br>
 <br>
 
 * Metadata  제작 포멧
   ![image](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/509d3e23-72c1-4a78-b06f-e64620a9ed9a) <br>
 * Metadata는 Phynotype 형식으로 제작할수 있습니다. <br>
- phenotype 파일은 엑셀에서 아래와 같은 규칙으로 엑셀에서 작업하여, 다른이름으로저장-탭으로 분리된 텍스트 (.txt) 파일로 저장하여 이용가능함 <br>
- * 행의 규칙
+ phenotype 파일은 엑셀에서 아래와 같은 규칙으로 엑셀에서 작업하여, 다른이름으로저장-탭으로 분리된 텍스트 (.txt) 파일로 저장하여 이용가능하다. <br>
+```
+* 행의 규칙
 - 1행: header (변수명으로 사용되며 대소문자 구분하여 사용)
 - 2행: 변수의 type - categorical 또는 numeric 정보를 모든 변수에 대하여 빠짐없이 채운다.
 - 3행 부터 샘플 나열
@@ -228,16 +229,17 @@ There was an issue with loading the file sample-metadata.tsv as metadata:
 - 2열 (옵션): BarcodeSequence
 - 3열 (옵션): LinkerPrimerSequence
 - 2열 또는 4열부터 Phenotype 나열 : age, sex, bmi 등
-결측값 : 공란만 허용 (NA, N/A, -99 등은 사용 불가) <br>
-.txt 이든 .tsv 이든 사용에는 무관함. 실습파일의 형식에 맞추어 다음 분석에 같은 형식으로 만들면 실수 최소화 <br>
+결측값 : 공란만 허용 (NA, N/A, -99 등은 사용 불가) 
+.txt 이든 .tsv 이든 사용에는 무관함. 실습파일의 형식에 맞추어 다음 분석에 같은 형식으로 만들면 실수 최소화 할수있다.
+
 * QIIME2 에서 설명하는 Metadata 관련 링크 :
-  https://gregcaporaso.github.io/q2book/using/metadata.html <br>
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-* 해결책으로 교수님께서 전에 KOGO 학회에서 받은 Metadata에 실험할 Sample 정보만 바꿔서 확장자명 맞춘뒤 분석 진행 해보라고 조언주심..
+  https://gregcaporaso.github.io/q2book/using/metadata.html
+  ```
+* 해결책으로 교수님께서 전에 KOGO 학회에서 받은 Metadata에 실험할 Sample 정보만 바꿔서 확장자명 맞춘뒤 분석 진행 해보라고 조언을 해 주셨다..
 
 **그래서 방향잡고 진행**
 <br>
-* Metadata 스크립트 내용 변경 -> 실험실에서 분석할 Sample로 기존 Sample ID를 변경
+* Metadata 스크립트 내용 변경 -> 실험실에서 분석할 Sample로 기존 Sample ID를 변경하였다.
 ![image](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/675a82a7-f786-4d23-a3e8-22ca8fcc6dcd)
 
 <br>
