@@ -233,10 +233,11 @@ There was an issue with loading the file sample-metadata.tsv as metadata:
 
 * https://view.qiime2.org/visualization/?type=html&src=b2c64c21-082e-4b38-b1d4-86a83cb8adf6 - 위 분석 결과 파일 Drag and Drop 파일 링크 <br>
 
-**문제점**
-분석을 진행한 Metadata 파일이 온전히 분석하려는 대상의 정보가 아니기때문에 Feature Table에대한 정보가 정확하지않다.
+**문제점** <br>
 
-**그래서** Metadata를 우리가 분석하는 Rumen animal에 대한 내용으로 채우기 위해 기존에 선행 연구된 논문 을 검색해서 찾아보기로 하였다.
+분석을 진행한 Metadata 파일이 온전히 분석하려는 Sample의 정보가 아니기때문에 Feature Table에대한 정보가 정확하지않다.
+
+**그래서** Metadata를 우리가 분석하는 Rumen animal에 대한 내용으로 채우기 위해 기존에 선행 연구된 논문을 검색해서 Metadata를 밴치마킹 하기로 결정, 비슷한 논문을 찾아보기로 하였다.
 
 ### 3-3-2. Representative Sequences 확인.
 
