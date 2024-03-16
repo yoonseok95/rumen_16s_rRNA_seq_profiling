@@ -141,8 +141,8 @@ Y축 : Quality Score
 * 여기서는 12개의 샘플에 대해서 QIIME2에서 DADA2를 통해 Paired-end Alignment를 진행하여 높은 정확도로 키메라를 제거하면서 동시에 노이즈도 같이 잡아 내기위한 검사를 진행합니다.
   * casava_pe_demux.qzv 파일을 통해 직접 눈으로 보고 확인한 read quality를 기반으로 trimming과 truncation을 결정합니다.
 
-    * --p-trim-left-f 과 --p-trim-left-r  : 5' 쪽에서 잘라낼때에 사용하는 Plugin <br>
-    * --p-trunc-len-f 과 --p-trunc-len-r : 3' 쪽에서 잘라낼때에 사용하는 Plugin <br>
+    * **--p-trim-left-f 과 --p-trim-left-r  : 5' 쪽에서 잘라낼때에 사용하는 Plugin** <br>
+    * **--p-trunc-len-f 과 --p-trunc-len-r : 3' 쪽에서 잘라낼때에 사용하는 Plugin** <br>
 
 * truncation시, paired-end의 overlap 길이를 반드시 고려하여, 충분한 overlap이 유지되도록 주의를 요합니다. <br>
 * 분석 파일은 2X150bp paired end 리드로서, V3-V4영역에 해당하는 염기들을 시퀀싱하였습니다.
@@ -211,6 +211,28 @@ There was an issue with loading the file sample-metadata.tsv as metadata:
 
   Find details on QIIME 2 metadata requirements here: https://docs.qiime2.org/2023.5/tutorials/metadata/
 ```
+* **Metadata** : 데이터를 설명해주는 데이터를 의미한다. <br>
+  예를 들자면, 나는 반추동물에 있는 반추위액을 통하여 16S rRNA Seq 분석을 돌리기때문에 분석을 돌릴 Sample을 Sequencing을 돌리고 나오는 데이터를 설명해 줄수있는 데이터를 의미한다. <br>
+<br>
+
+* Metadata  제작 포멧
+  ![image](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/509d3e23-72c1-4a78-b06f-e64620a9ed9a) <br>
+* Metadata는 Phynotype 형식으로 제작할수 있습니다. <br>
+ phenotype 파일은 엑셀에서 아래와 같은 규칙으로 엑셀에서 작업하여, 다른이름으로저장-탭으로 분리된 텍스트 (.txt) 파일로 저장하여 이용가능함 <br>
+ * 행의 규칙
+- 1행: header (변수명으로 사용되며 대소문자 구분하여 사용)
+- 2행: 변수의 type - categorical 또는 numeric 정보를 모든 변수에 대하여 빠짐없이 채운다.
+- 3행 부터 샘플 나열
+* 열의 규칙
+- 1열 (필수) : header 에 ID 는 반드시 규정 에 맞게 표현
+- 2열 (옵션): BarcodeSequence
+- 3열 (옵션): LinkerPrimerSequence
+- 2열 또는 4열부터 Phenotype 나열 : age, sex, bmi 등
+결측값 : 공란만 허용 (NA, N/A, -99 등은 사용 불가) <br>
+.txt 이든 .tsv 이든 사용에는 무관함. 실습파일의 형식에 맞추어 다음 분석에 같은 형식으로 만들면 실수 최소화 <br>
+* QIIME2 에서 설명하는 Metadata 관련 링크 :
+  https://gregcaporaso.github.io/q2book/using/metadata.html <br>
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 * 해결책으로 교수님께서 전에 KOGO 학회에서 받은 Metadata에 실험할 Sample 정보만 바꿔서 확장자명 맞춘뒤 분석 진행 해보라고 조언주심..
 
 **그래서 방향잡고 진행**
@@ -233,9 +255,8 @@ There was an issue with loading the file sample-metadata.tsv as metadata:
 
 * https://view.qiime2.org/visualization/?type=html&src=b2c64c21-082e-4b38-b1d4-86a83cb8adf6 - 위 분석 결과 파일 Drag and Drop 파일 링크 <br>
 
-**문제점** <br>
-
-분석을 진행한 Metadata 파일이 온전히 분석하려는 Sample의 정보가 아니기때문에 Feature Table에대한 정보가 정확하지않다.
+* **문제점** <br>
+  분석을 진행한 Metadata 파일이 온전히 분석하려는 Sample의 정보가 아니기때문에 Feature Table에대한 정보가 정확하지않다.
 
 **그래서** Metadata를 우리가 분석하는 Rumen animal에 대한 내용으로 채우기 위해 기존에 선행 연구된 논문을 검색해서 Metadata를 밴치마킹 하기로 결정, 비슷한 논문을 찾아보기로 하였다.
 
