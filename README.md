@@ -260,7 +260,18 @@ There was an issue with loading the file sample-metadata.tsv as metadata:
 * **문제점** <br>
   분석을 진행한 Metadata 파일이 온전히 분석하려는 Sample의 정보가 아니기때문에 Feature Table에대한 정보가 정확하지않다.
 
-**그래서** Metadata를 우리가 분석하는 Rumen animal에 대한 내용으로 채우기 위해 기존에 선행 연구된 논문을 검색해서 Metadata를 밴치마킹 하기로 결정, 비슷한 논문을 찾아보기로 하였다.
+**그래서** Metadata를 우리가 분석하는 Ruminant 에 대한 내용으로 채우기 위해 기존에 선행 연구된 논문을 검색해서 Metadata에 대한 Format을 찾아서 밴치마킹 하기로 결정 <br>
+하지만, 논문에 어떻게 Metadata를 작성했는지 제공을 해주지 않아서, 있는자료로 메타데이터 자체 제작. <br>
+
+![image](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/08fafbeb-85f4-4c4f-ad91-419947e42425) <br>
+
+제작된 데이터로 분석 시작.
+
+**하지만...**
+
+오류가 계속 뜬다......
+![image](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/abf9d39b-d3a5-43e5-90ac-7dfcc650e815) <br>
+
 
 ### 3-3-2. Representative Sequences 확인.
 
