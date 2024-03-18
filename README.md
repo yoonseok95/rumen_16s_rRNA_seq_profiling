@@ -272,6 +272,22 @@ There was an issue with loading the file sample-metadata.tsv as metadata:
 오류가 계속 뜬다......
 ![image](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/abf9d39b-d3a5-43e5-90ac-7dfcc650e815) <br>
 
+그래서 Metadata 없이 그냥 Visualization 진행. <br>
+
+* Overview <br>
+![image](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/bfc06e83-22bb-4fcb-a7b3-0994a248e561) <br>
+
+* Interactive Sample Detail <br>
+![image](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/6b880b1a-8d2d-4166-9e94-a38cf8bd058b) <br>
+
+* Feature Detail <br>
+![image](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/c9a46682-fdca-4f27-8fb6-9de80dd6527c) <br>
+
+이렇게 결과가 확인되었다.
+
+* Qiime2 view 결과 확인 링크 <br>
+  https://view.qiime2.org/visualization/?type=html&src=30ca39ab-af3c-4357-95c2-e1175219dd30 <br>
+
 
 ### 3-3-2. Representative Sequences 확인.
 
