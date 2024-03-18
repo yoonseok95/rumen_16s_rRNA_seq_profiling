@@ -288,6 +288,7 @@ There was an issue with loading the file sample-metadata.tsv as metadata:
 * Qiime2 view 결과 확인 링크 <br>
   https://view.qiime2.org/visualization/?type=html&src=30ca39ab-af3c-4357-95c2-e1175219dd30 <br>
 
+* **일단 Metadata가 없이도 분석이 가능하다는것을 확인** 그래서 다음 분석단계로 넘어감. <br>
 
 ### 3-3-2. Representative Sequences 확인.
 
@@ -310,14 +311,83 @@ qiime feature-table tabulate-seqs \
 * rep-seqs.qzv 파일 Qiime2 View로 열기 : 
 https://view.qiime2.org/visualization/?src=028fe789-c56d-4d14-98ce-0f304df29ab3&type=html
 ![스크린샷 2024-03-07 17-50-38](https://github.com/yoonseok95/rumen_16s_rRNA_seq_profiling/assets/145320727/baf8371a-eedb-4361-9a8f-c4245d8b9257) <br>
+
+**Data Filtering 단계는 Sample에서 나온 현저히 낮은 Feature들만 필터링을 진행한다고 했지만, 여기서는 어떤 Sample에서 우리가 확인하고싶은 미생물이 나올지 몰라 Feature 가 낮은 Sample도 살려서 다음단계로 넘어갔습니다.** <br>
+
 ## 4. Diversity Analysis <br>
 Diversity Analysis Pipeline : <br>
-![스크린샷 2024-03-13 21-33-02](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/b41ac96f-6c87-41c5-a857-bfea54d116e8)
+![스크린샷 2024-03-13 21-33-02](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/b41ac96f-6c87-41c5-a857-bfea54d116e8) <br>
+
+Diversity 분석은, QIIME2의 "diversity" 라는 plugin 을 사용하며, core-metrics-phylogenetic 방법으로, alpha 와 beta diversity metrics를 한번에 생성가능합니다. <br>
+
+* Alpha diversity 
+
+  * Shannon’s diversity index (a quantitative measure of community richness)
+  * Observed Features (a qualitative measure of community richness)
+  * Faith’s Phylogenetic Diversity (a qualitiative measure of community richness that incorporates phylogenetic relationships between the features)
+  * Evenness (or Pielou’s Evenness; a measure of community evenness)
+<br>
+
+* Beta diversity
+
+  * Jaccard distance (a qualitative measure of community dissimilarity)
+  * Bray-Curtis distance (a quantitative measure of community dissimilarity)
+  * unweighted UniFrac distance (a qualitative measure of community dissimilarity that incorporates phylogenetic relationships between the features)
+  * weighted UniFrac distance (a quantitative measure of community dissimilarity that incorporates phylogenetic relationships between the features)
+  * core-metrics-phylogenetic 방법에서는, FeatureTable[Frequency] 즉, 위에서 생성한 filtered_100_table.qza 파일을 user-specified depth 로 rarefying 합니다.
+
+이를 위하여, filtered_100_table.qzv 을 QIIME2view 의 "Interactive Sample Detail"에서 확인한 후, 적절한 depth를 정합니다.
+
+Rarefaction 은 이렇게 정한 기준 depth 로 replacement 없이 subsampling을 하며, 기준 depth 이하의 샘플은 분석에서 제외됩니다. 내 샘플 중 최소 read count를 기준으로 정한다면 분석에 제외되는 샘플은 없게 됩니다.
+
+### 4-1. Phylogenetic Diversity 분석을 위한 Phylogenetic Tree 만들기 <br>
+
+
+```
+qiime phylogeny align-to-tree-mafft-fasttree \
+--i-sequences rep-seqs.qza \
+--o-alignment aligned-rep-seqs.qza \
+--o-masked-alignment masked-aligned-rep-seqs.qza \
+--o-tree unrooted-tree.qza \
+--o-rooted-tree rooted-tree.qza
+```
+
+* 코드 실행 한 사진.
+![image](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/26e215f6-ca8b-4873-b7c5-f5c7af2abb95)
+
+* output 파일 1: aligned-rep-seqs.qza 생성 확인
+* output 파일 2: masked-aligned-rep-seqs.qza 생성 확인
+* output 파일 3: unrooted-tree.qza 생성 확인
+* output 파일 4: rooted-tree.qza 생성 확인 => 이 rooted-tree.qza 파일이 phylogenetic diversity 분석에 사용됩니다.
+
+### 4-2. Corer Analysis <br>
+
+* 필요한 input 파일: filtered_100_table.qza, rooted-tree.qza, 메타데이터 sample-meteadata_ata_s48.txt
+
+* --p-sampling-depth 명령어와 함께 해당 depth 숫자를 반드시 적습니다.
+
+```
+qiime diversity core-metrics-phylogenetic \
+--i-phylogeny rooted-tree.qza \
+--i-table filtered_100_table.qza \
+--p-sampling-depth 142 \
+--m-metadata-file sample-metadata_ata_s48.txt \
+--output-dir core-metrics-results
+```
+
+output 폴더: 15) core-metrics-results 폴더 생성 확인
+
+* **문제점**
+  * 메타데이터 에관한 에러코드가 발생하였다.
+ ![image](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/3f6ae2e8-d22c-4110-a3f6-09f1e41bbd80)
+
 
 ## 5. Taxonomy Profiling <br>
 Taxonomy Profiling Pipeline : <br>
 ![스크린샷 2024-03-13 21-37-06](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/ea6c2704-7ab8-4558-ba16-5f9860f532e6) <br>
 <br>
+
+
 ## 6. 결과도출 <br>
 Conclusion Pipeline : <br>
 ![4 - Untitled slide](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/6ed6d2a0-7c8a-4743-a141-a0fc62ef6366)
