@@ -290,6 +290,21 @@ There was an issue with loading the file sample-metadata.tsv as metadata:
 
 * **일단 Metadata가 없이도 분석이 가능하다는것을 확인** 그래서 다음 분석단계로 넘어감. <br>
 
+**Metadata 관련 문제 해결! - .tsv 파일내에 샘플별데이터 정렬이 Tab으로 구분지어져 있어야했는데 그렇지 않고 하나로 묶여있었다... <br>
+이점 해결하고 나니 분석이 진행 되었음!** <br>
+![image](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/c0e3caaa-6bc4-4d01-a620-e108ed39d93c) <br>
+
+*Overview <br>
+![image](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/39fdea69-ac0d-408b-8a1b-a87aae9d8c16) <br>
+
+
+* Interactive Sample Detail <br>
+![image](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/8b3f7e3d-e07f-4149-853d-3dcf373ff78f) <br>
+
+* Feature Detail <br>
+![image](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/5e77581c-9495-4b73-b6f0-c8133edd135a) <br>
+
+
 ### 3-3-2. Representative Sequences 확인.
 
 ```
@@ -312,8 +327,46 @@ qiime feature-table tabulate-seqs \
 https://view.qiime2.org/visualization/?src=028fe789-c56d-4d14-98ce-0f304df29ab3&type=html
 ![스크린샷 2024-03-07 17-50-38](https://github.com/yoonseok95/rumen_16s_rRNA_seq_profiling/assets/145320727/baf8371a-eedb-4361-9a8f-c4245d8b9257) <br>
 
+### 3-3-3. Data filtering 
+
+```
+qiime feature-table filter-samples \
+--i-table table-dada2.qza \
+--p-min-frequency 1 \
+--o-filtered-table filtered_1_table.qza
+```
+
 **Data Filtering 단계는 Sample에서 나온 현저히 낮은 Feature들만 필터링을 진행한다고 했지만, 여기서는 어떤 Sample에서 우리가 확인하고싶은 미생물이 나올지 몰라 Feature 가 낮은 Sample도 살려서 다음단계로 넘어갔습니다.** <br>
 
+**하지만,,,** Filter된 결과 파일이 다양성분석에서 Input 파일로 사용되기 떄문에 Filtering 단계를 진행 하였습니다. 
+0으로 Filtering 진행 하려 하였으나, Qiime tool 내에서 필터링을 하지않는것은 요구되지 않는다는 오류코드를 보내와서 어쩔수 없이 샘플당 feature가 1개 나오는 샘플들을 Filtering  하였습니다. <br>
+
+![image](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/9ab43df7-23c4-446a-91a2-cf2af03cd93d) <br>
+
+* 결과 파일
+  * filtered_1_table.qza
+ 
+### 3-3-4. Visualize with Filtered Data
+
+
+table-dada2.qza 파일에서 나타내었던 샘플당 Feature들을 filtering 하면서 filtered_1_table.qza 파일로 넘어오게 되는데 여기서 생기는 변화들을 filtered_1_table.qzv에서 확인할수 있다. <br>
+
+![image](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/9fab6992-436f-4ed6-ae4f-db1ca3596f71)
+
+
+```
+qiime feature-table summarize \
+--i-table filtered_1_table.qza \
+--o-visualization filtered_1_table.qzv \
+--m-sample-metadata-file sample-metadata_ata.tsv
+```
+
+* 결과 파일
+  * filtered_1_table.qzv
+
+* filtered_1_table.qzv 파일을 Drag and Drop으로 visualization 진행한 링크:
+  https://view.qiime2.org/visualization/?type=html&src=2f97fb2d-f152-47ba-babe-d208c513a2c3 
+    
 ## 4. Diversity Analysis <br>
 Diversity Analysis Pipeline : <br>
 ![스크린샷 2024-03-13 21-33-02](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/b41ac96f-6c87-41c5-a857-bfea54d116e8) <br>
@@ -362,35 +415,50 @@ qiime phylogeny align-to-tree-mafft-fasttree \
 
 ### 4-2. Corer Analysis <br>
 
-* 필요한 input 파일: filtered_100_table.qza, rooted-tree.qza, 메타데이터 sample-meteadata_ata_s48.txt
+* 필요한 input 파일: filtered_100_table.qza, rooted-tree.qza, 메타데이터 sample-metadata_ata_s48.txt
+* Tutorial 상에는 filtering 단계에서 사라진 샘플들을 Qiime2 view에 Visualization 시킨후 지워진 샘플들을 기존의sample-metadata_ata.tsv에서 지워서 파일명을 변경하였다. 그래서 sample-metadata_ata_s48.txt파일이 형성되었다. 
+* 실제로는 지워진 샘플들이 없어서 제작한 sample-metadata_ata.tsv파일을 그대로 사용하여 분석을 진행하였다.
 
 * --p-sampling-depth 명령어와 함께 해당 depth 숫자를 반드시 적습니다.
 
 ```
 qiime diversity core-metrics-phylogenetic \
 --i-phylogeny rooted-tree.qza \
---i-table filtered_100_table.qza \
---p-sampling-depth 142 \
---m-metadata-file sample-metadata_ata_s48.txt \
+--i-table filtered_1_table.qza \
+--p-sampling-depth 2 \   # 2개의 Feature를 갖는샘플부터 다시 sampling을 진행한다는 코드
+--m-metadata-file sample-metadata_ata.tsv \
 --output-dir core-metrics-results
 ```
 
-output 폴더: 15) core-metrics-results 폴더 생성 확인
+output 폴더: core-metrics-results 폴더 생성 확인
 
-* **문제점**
-  * 메타데이터 에관한 에러코드가 발생하였다.
- ![image](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/3f6ae2e8-d22c-4110-a3f6-09f1e41bbd80)
+* 코드 진행한 사진
+  ![image](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/783d4fcd-f7c6-4db5-9115-7c20527f3ff5) <br>
 
+* Output 폴더에 들어가서 결과물 확인한 사진
+  ![image](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/9dd16ed7-8605-4837-bbb9-7cb7fa15224a) <br>
 
-## 5. Taxonomy Profiling <br>
+* 분석을 진행하는 폴더에 Output 폴더가 생성된것을 확인할수 있다.
+  ![image](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/82ae0999-0533-46d8-a610-bc91cb04dc56)
+
+### 4-3. Beta Diversity 그룹간 비교 
+
+```
+qiime diversity beta-group-significance \
+--i-distance-matrix core-metrics-results/unweighted_unifrac_distance_matrix.qza \
+--m-metadata-file sample-metadata_ata.tsv \
+--m-metadata-column Description \
+--o-visualization core-metrics-results/unweighted-unifrac-vegetation-significance.qzv \
+--p-pairwise
+```
+
+## 5. Taxonomy Profiling 
+
 Taxonomy Profiling Pipeline : <br>
 ![스크린샷 2024-03-13 21-37-06](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/ea6c2704-7ab8-4558-ba16-5f9860f532e6) <br>
-<br>
 
 
-## 6. 결과도출 <br>
-Conclusion Pipeline : <br>
-![4 - Untitled slide](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/6ed6d2a0-7c8a-4743-a141-a0fc62ef6366)
+
 
 
 
