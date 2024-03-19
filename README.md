@@ -511,9 +511,11 @@ qiime taxa barplot \
 
 * Output 파일 Visualization  사진:
   ![image](https://github.com/yoonseok95/rumen_16s_rRNA_seq_profiling/assets/145320727/d3aaba04-7e22-4301-8f85-dbe64da5201a)
-* Taxa bar plot visualization 한 Qiime2 view 링크 :
+* Taxa bar plot visualization 한 Qiime2 view 링크 : <br>
   https://view.qiime2.org/visualization/?src=ae8e5616-64c0-4cca-bc3f-51a8e3a05ba4&type=html
+<br>
 
-**문제점**
+**문제점** <br>
+
 위의 Output 파일 Visualization 사진에서도 보이는 바와 같이 우리가 중점으로 보고싶은 미생물들에 대한 정보에 비해 박테리아와 같은 우리가 Target 하지 않은 미생물들에 대한 정보들이 더 많이 있다. 
 하여, 2023년 12월15일자로 제작된 한경국립대학교 반추동물 저메탄 성능 검증 최종보고서에 실려있는 소 반추위 내 Methanogen 종류 (P.g 25, **표 13. 소의 반추위 내 Methanogen 종류**) 를 참고하여 Silva Data Base 에서 Methanogen 에 대한 Reference Data들을 다운받아 분석을 진행하고자 함.
