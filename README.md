@@ -457,9 +457,63 @@ qiime diversity beta-group-significance \
 Taxonomy Profiling Pipeline : <br>
 ![스크린샷 2024-03-13 21-37-06](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/ea6c2704-7ab8-4558-ba16-5f9860f532e6) <br>
 
+### 5-1. Classification
 
+Taxonomic 분석을 위해서는, 기존 만들어놓은 feature table (filtered_1_table.qza)과 representative sequence (rep-seqs.qza) 파일 외에, taxonomy (features 의 이름) 정보가 필요합니다.
 
+그러므로 taxonomic 분석 전에, rep-seqs.qza 파일에 Machine Learning 방법으로 train된 reference DB (QIIME2 홈페이지에서 다운로드 가능)의 taxonomy 정보를 붙이는 작업을 아래와 같이 진행합니다.
 
+* Greengene DB 를 이용한 trained data : gg-13-8-99-nb-classifier.qza <br>
 
+* 필요한 input 파일: gg-13-8-99-nb-classifier.qza, rep-seqs.qza
+```
+qiime feature-classifier classify-sklearn \
+--i-classifier gg-13-8-99-nb-classifier.qza \
+--i-reads rep-seqs.qza \
+--o-classification greengene138_99_taxonomy.qza
+```
 
+* output 파일: greengene138_99_taxonomy.qza 생성 확인
 
+* 나의 representative sequences 데이터에 taxonomy 가 붙은 것을 확인하기 위해, 위 생성된 .qza 파일을 Visualization
+
+```
+qiime metadata tabulate \
+--m-input-file greengene138_99_taxonomy.qza \
+--o-visualization greengene138_99_taxonomy.qzv
+```
+
+* output 파일: greengene138_99_taxonomy.qzv 생성 확인
+
+* 코드 실행 한 사진:
+  ![image](https://github.com/yoonseok95/rumen_16s_rRNA_seq_profiling/assets/145320727/0051996e-a921-4266-94b5-f60cc7bf4659)
+ 
+* 파일을 Drag and Drop으로 visualization 진행한 사진:
+  ![image](https://github.com/yoonseok95/rumen_16s_rRNA_seq_profiling/assets/145320727/59fa2356-32b4-490a-936c-1608c2a2c265)
+
+* 파일을 Drag and Drop으로 visualization 진행한 링크:
+  https://view.qiime2.org/visualization/?type=html&src=c35c5941-152d-450c-b205-9548235d35e3
+
+### 5-2. Taxonomic Composition에 대해 Bar plot 그리기
+
+```
+qiime taxa barplot \
+--i-table filtered_1_table.qza \
+--i-taxonomy greengene138_99_taxonomy.qza \
+--m-metadata-file sample-metadata_ata.tsv \
+--o-visualization taxa-bar-plots_greengene.qzv
+```
+
+* output 파일: taxa-bar-plots_greengene.qzv 생성 확인
+
+* 코드 실행한 사진 :
+  ![image](https://github.com/yoonseok95/rumen_16s_rRNA_seq_profiling/assets/145320727/0d32d7d9-0c09-4def-a255-dac2ec1bbbb9)
+
+* Output 파일 Visualization  사진:
+  ![image](https://github.com/yoonseok95/rumen_16s_rRNA_seq_profiling/assets/145320727/d3aaba04-7e22-4301-8f85-dbe64da5201a)
+* Taxa bar plot visualization 한 Qiime2 view 링크 :
+  https://view.qiime2.org/visualization/?src=ae8e5616-64c0-4cca-bc3f-51a8e3a05ba4&type=html
+
+**문제점**
+위의 Output 파일 Visualization 사진에서도 보이는 바와 같이 우리가 중점으로 보고싶은 미생물들에 대한 정보에 비해 박테리아와 같은 우리가 Target 하지 않은 미생물들에 대한 정보들이 더 많이 있다. 
+하여, 2023년 12월15일자로 제작된 한경국립대학교 반추동물 저메탄 성능 검증 최종보고서에 실려있는 소 반추위 내 Methanogen 종류 (P.g 25, **표 13. 소의 반추위 내 Methanogen 종류**) 를 참고하여 Silva Data Base 에서 Methanogen 에 대한 Reference Data들을 다운받아 분석을 진행하고자 함.
