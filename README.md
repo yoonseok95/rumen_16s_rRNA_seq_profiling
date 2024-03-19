@@ -443,6 +443,8 @@ output 폴더: core-metrics-results 폴더 생성 확인
 
 ### 4-3. Beta Diversity 그룹간 비교 
 
+* Unweighted UniFrac distance (phylogenetic binary 분석)
+
 ```
 qiime diversity beta-group-significance \
 --i-distance-matrix core-metrics-results/unweighted_unifrac_distance_matrix.qza \
@@ -451,6 +453,37 @@ qiime diversity beta-group-significance \
 --o-visualization core-metrics-results/unweighted-unifrac-vegetation-significance.qzv \
 --p-pairwise
 ```
+
+* 코드 실행한 사진:
+  ![image](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/fef34847-1eb6-445a-b3a7-d518b4cbc893) <br>
+* Output 파일 Visualization 한 사진 :
+  ![image](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/acae2520-f8b4-4f1c-a431-612b89f6f443) <br>
+<br>
+
+* alpha diversity 분석과는 달리, beta diversity 그룹 비교 분석은, 1개의 변수만 분석됩니다. --m-metadata-column 에서 분석변수 header name 을 반드시 지정해주어야 합니다.
+* output 파일: core-metrics-results 폴더 안에 unweighted-unifrac-vegetation-significance.qzv 생성 확인
+* 결과 보기
+  * Overview : PERMAVONA 통계량 확인
+  * Group significance plots : Distance to 기준그룹
+  * Pairwise permanova results : 세그룹 이상 시, pairwise 통계분석결과
+  * 모든 plots 은 PDF 다운 가능하며, TSV나 CSV 다운로드하여 직접 plot을 새로 그릴 수도 있음
+<br>
+
+* Weighted UniFrac distance (phylogenetic abundance 분석)
+
+```
+qiime diversity beta-group-significance \
+--i-distance-matrix core-metrics-results/weighted_unifrac_distance_matrix.qza \
+--m-metadata-file sample-metadata_ata_s48.txt \
+--m-metadata-column Vegetation \
+--o-visualization core-metrics-results/weighted-unifrac-vegetation-significance.qzv \
+--p-pairwise
+```
+* 필요한 input 파일: core-metrics-results 폴더 안에 weighted_unifrac_distance_matrix.qza, 메타데이터 sample-meteadata_ata.tsv
+* output 파일: core-metrics-results 폴더 안에 weighted-unifrac-vegetation-significance.qzv 생성 확인
+* Output 파일 Visualization 한 사진 :
+  ![image](https://github.com/Ju-M99/rumen_16s_rRNA_seq_profiling/assets/145320727/ae49e811-f091-48fa-9a5c-1476fa88bac1)
+
 
 ## 5. Taxonomy Profiling 
 
